@@ -96,7 +96,9 @@ E = tkinter.E
 SW = tkinter.SW
 S = tkinter.S
 SE = tkinter.SE
-
+ARC = tkinter.ARC
+CHORD = tkinter.CHORD
+PIESLICE = tkinter.PIESLICE
 
 class onTimerCall():
     def __init__(self, _func, _timeInterval):
@@ -313,6 +315,28 @@ def circle(x, y, R):
             outline=_penColor, width=_penSize, fill=_brushColor
     )
     return circ
+
+
+def oval(x1, y1, x2, y2):
+    x1, y1 = transformCoord (x1, y1)
+    x2, y2 = transformCoord (x2, y2)
+    _oval = _C.create_oval(x1, y1, x2, y2,
+                         outline = _penColor,
+                         width = _penSize,
+                         fill = _brushColor)
+    return _oval
+
+
+def arc(x1, y1, x2, y2, start, end, style = PIESLICE):
+    x1, y1 = transformCoord ( x1, y1 )
+    x2, y2 = transformCoord ( x2, y2 )
+    _arc = _C.create_arc(x1, y1, x2, y2,
+                 start = start, extent = end - start,
+                 style = style,
+                 outline = _penColor,
+                 width = _penSize,
+                 fill = _brushColor)
+    return _arc
 
 
 def polygon(points):
